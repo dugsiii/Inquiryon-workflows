@@ -27,7 +27,7 @@
     "Agent Safety"
   ],
   "author": "Jeshua Cheng <jeshua.cheng@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dugsiii/Inquiryon-workflows.git"
