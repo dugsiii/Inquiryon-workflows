@@ -8,7 +8,7 @@ export async function safeDynamicImport<T = any>(moduleName: string): Promise<T 
   }
 }
 
-// Generic helpers for specific LLM providers (no type references)
+// Generic helpers for specific LLM providers
 export async function importOpenAI(): Promise<any> {
   return await safeDynamicImport('openai');
 }
