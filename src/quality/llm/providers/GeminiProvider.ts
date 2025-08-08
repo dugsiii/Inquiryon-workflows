@@ -2,7 +2,6 @@ import { BaseLLMProvider } from './BaseLLMProvider.js';
 import { LLMMessage, LLMOptions, LLMResponse, LLMProviderConfig } from '../types.js';
 import { importGemini } from '../utils/dynamicImport.js';
 
-
 export class GeminiProvider extends BaseLLMProvider {
   readonly name = 'gemini';
   readonly supportedModels = [
