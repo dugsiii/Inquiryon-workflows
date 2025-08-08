@@ -1,0 +1,1 @@
+export { NewsletterAssessor } from './NewsLetterAssessor.js';

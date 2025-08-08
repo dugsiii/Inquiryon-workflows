@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/examples/basic.ts",
+    "dev:test": "tsx src/examples/run-test.ts",
     "test": "jest",
+    "test:llm": "tsx src/examples/test-llm-system.ts",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts"
   },
@@ -15,8 +17,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "openai": "^5.12.2",
     "uuid": "^11.1.0",
-    "zod": "^4.0.14"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
