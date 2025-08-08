@@ -1,5 +1,5 @@
 {
-  "name": "inquire",
+  "name": "inquiryon",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,13 +12,22 @@
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Safe AI",
+    "Safe Generative AI",
+    "HITL",
+    "Human In The Loop",
+    "AI",
+    "Generative AI",
+    "Agent",
+    "AI Agent",
+    "Agent Safety"
+  ],
+  "author": "Jeshua Cheng <jeshua.cheng@gmail.com>",
   "license": "ISC",
-  "description": "",
+  "description": "A plug-and-play Human-In-The-Loop system for AI Agents",
   "dependencies": {
     "dotenv": "^17.2.1",
-    "openai": "^5.12.2",
     "uuid": "^11.1.0",
     "zod": "^3.25.76"
   },
