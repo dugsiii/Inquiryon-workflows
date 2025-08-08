@@ -1,6 +1,7 @@
 {
   "name": "inquiryon",
   "version": "1.0.0",
+  "description": "CHANGE_ME: Brief description of what inquiryon does",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,7 +11,9 @@
     "test": "jest",
     "test:llm": "tsx src/examples/test-llm-system.ts",
     "lint": "eslint src/**/*.ts",
-    "format": "prettier --write src/**/*.ts"
+    "format": "prettier --write src/**/*.ts",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "Safe AI",
@@ -25,7 +28,22 @@
   ],
   "author": "Jeshua Cheng <jeshua.cheng@gmail.com>",
   "license": "ISC",
-  "description": "A plug-and-play Human-In-The-Loop system for AI Agents",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dugsiii/Inquiryon-workflows.git"
+  },
+  "homepage": "https://github.com/dugsiii/Inquiryon-workflows?tab=readme-ov-file",
+  "bugs": {
+    "url": "https://github.com/inquiryon/inquiryon-workflows/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "dotenv": "^17.2.1",
     "uuid": "^11.1.0",
