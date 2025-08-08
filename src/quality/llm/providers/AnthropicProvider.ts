@@ -1,5 +1,6 @@
 import { BaseLLMProvider } from './BaseLLMProvider.js';
 import { LLMMessage, LLMOptions, LLMResponse, LLMProviderConfig } from '../types.js';
+import { importAnthropic } from '../utils/dynamicImport.js';
 
 export class AnthropicProvider extends BaseLLMProvider {
   readonly name = 'anthropic';
@@ -26,27 +27,22 @@ export class AnthropicProvider extends BaseLLMProvider {
       return this.isSDKAvailable;
     }
 
-    try {
-      await import('@anthropic-ai/sdk');
-      this.isSDKAvailable = true;
-      return true;
-    } catch (error) {
-      this.isSDKAvailable = false;
-      return false;
-    }
+    const anthropicModule = await importAnthropic();
+    this.isSDKAvailable = anthropicModule !== null;
+    return this.isSDKAvailable;
   }
 
   private async initializeClient() {
-    const isAvailable = await this.checkSDKAvailability();
-    if (!isAvailable) {
+    const anthropicModule = await importAnthropic();
+    
+    if (!anthropicModule) {
       throw new Error(
         'Anthropic SDK not installed. To use Anthropic provider, run: npm install @anthropic-ai/sdk'
       );
     }
 
     try {
-      const { Anthropic } = await import('@anthropic-ai/sdk');
-      this.anthropic = new Anthropic({
+      this.anthropic = new anthropicModule.Anthropic({
         apiKey: this.config.apiKey,
         baseURL: this.config.baseUrl
       });
@@ -127,11 +123,7 @@ export class AnthropicProvider extends BaseLLMProvider {
   }
 
   static async isAvailable(): Promise<boolean> {
-    try {
-      await import('@anthropic-ai/sdk');
-      return true;
-    } catch {
-      return false;
-    }
+    const anthropicModule = await importAnthropic();
+    return anthropicModule !== null;
   }
 }

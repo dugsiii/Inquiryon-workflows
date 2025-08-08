@@ -14,7 +14,7 @@ A powerful TypeScript framework for building **Human-in-the-Loop (HITL) agentic 
 ## 📦 Installation
 
 ```bash
-npm install inquiryon-workflows
+npm install inquiryon
 ```
 
 ### Optional LLM Providers

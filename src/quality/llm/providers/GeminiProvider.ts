@@ -1,5 +1,6 @@
 import { BaseLLMProvider } from './BaseLLMProvider.js';
 import { LLMMessage, LLMOptions, LLMResponse, LLMProviderConfig } from '../types.js';
+import { importGemini } from '../utils/dynamicImport.js';
 
 export class GeminiProvider extends BaseLLMProvider {
   readonly name = 'gemini';
@@ -25,27 +26,22 @@ export class GeminiProvider extends BaseLLMProvider {
       return this.isSDKAvailable;
     }
 
-    try {
-      await import('@google/generative-ai');
-      this.isSDKAvailable = true;
-      return true;
-    } catch (error) {
-      this.isSDKAvailable = false;
-      return false;
-    }
+    const geminiModule = await importGemini();
+    this.isSDKAvailable = geminiModule !== null;
+    return this.isSDKAvailable;
   }
 
   private async initializeClient() {
-    const isAvailable = await this.checkSDKAvailability();
-    if (!isAvailable) {
+    const geminiModule = await importGemini();
+    
+    if (!geminiModule) {
       throw new Error(
         'Google Generative AI SDK not installed. To use Gemini provider, run: npm install @google/generative-ai'
       );
     }
 
     try {
-      const { GoogleGenerativeAI } = await import('@google/generative-ai');
-      this.genAI = new GoogleGenerativeAI(this.config.apiKey);
+      this.genAI = new geminiModule.GoogleGenerativeAI(this.config.apiKey);
     } catch (error) {
       throw new Error(`Failed to initialize Gemini client: ${error}`);
     }
@@ -131,11 +127,7 @@ export class GeminiProvider extends BaseLLMProvider {
   }
 
   static async isAvailable(): Promise<boolean> {
-    try {
-      await import('@google/generative-ai');
-      return true;
-    } catch {
-      return false;
-    }
+    const geminiModule = await importGemini();
+    return geminiModule !== null;
   }
 }

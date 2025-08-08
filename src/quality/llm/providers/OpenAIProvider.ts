@@ -1,5 +1,6 @@
 import { BaseLLMProvider } from './BaseLLMProvider.js';
 import { LLMMessage, LLMOptions, LLMResponse, LLMProviderConfig } from '../types.js';
+import { importOpenAI } from '../utils/dynamicImport.js';
 
 export class OpenAIProvider extends BaseLLMProvider {
   readonly name = 'openai';
@@ -19,7 +20,6 @@ export class OpenAIProvider extends BaseLLMProvider {
       defaultModel: 'gpt-4',
       ...config
     });
-    // Don't initialize client in constructor - do it lazily
   }
 
   private async checkSDKAvailability(): Promise<boolean> {
@@ -27,27 +27,22 @@ export class OpenAIProvider extends BaseLLMProvider {
       return this.isSDKAvailable;
     }
 
-    try {
-      await import('openai');
-      this.isSDKAvailable = true;
-      return true;
-    } catch (error) {
-      this.isSDKAvailable = false;
-      return false;
-    }
+    const openaiModule = await importOpenAI();
+    this.isSDKAvailable = openaiModule !== null;
+    return this.isSDKAvailable;
   }
 
   private async initializeClient() {
-    const isAvailable = await this.checkSDKAvailability();
-    if (!isAvailable) {
+    const openaiModule = await importOpenAI();
+    
+    if (!openaiModule) {
       throw new Error(
         'OpenAI SDK not installed. To use OpenAI provider, run: npm install openai'
       );
     }
 
     try {
-      const { OpenAI } = await import('openai');
-      this.openai = new OpenAI({
+      this.openai = new openaiModule.OpenAI({
         apiKey: this.config.apiKey,
         baseURL: this.config.baseUrl
       });
@@ -60,7 +55,7 @@ export class OpenAIProvider extends BaseLLMProvider {
     try {
       const isAvailable = await this.checkSDKAvailability();
       if (!isAvailable) {
-        return false; // SDK not available, so provider is not healthy
+        return false;
       }
 
       if (!this.openai) {
@@ -114,13 +109,8 @@ export class OpenAIProvider extends BaseLLMProvider {
     }
   }
 
-  // Static method to check if provider can be used without instantiation
   static async isAvailable(): Promise<boolean> {
-    try {
-      await import('openai');
-      return true;
-    } catch {
-      return false;
-    }
+    const openaiModule = await importOpenAI();
+    return openaiModule !== null;
   }
 }
