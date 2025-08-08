@@ -1,6 +1,7 @@
 import { LLMProviderFactory, LLMManager } from '../quality/llm/index.js';
 import { QualityEngine } from '../quality/QualityEngine.js';
 import { EngagementAssessor, BrandVoiceAssessor } from '../quality/assessors/ai/index.js';
+import 'dotenv/config'; 
 
 async function testLLMSystem() {
   console.log('🧪 Testing LLM System...\n');
