@@ -1,7 +1,7 @@
 {
   "name": "inquiryon",
-  "version": "1.0.0",
-  "description": "CHANGE_ME: Brief description of what inquiryon does",
+  "version": "1.0.1",
+  "description": "Plug-and-play Human-In-The-Loop framework for agentic workflows",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
