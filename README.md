@@ -1,15 +1,22 @@
 # Inquiryon Workflows
 
-A powerful TypeScript framework for building **Human-in-the-Loop (HITL) agentic workflows** with intelligent quality assessment and multi-LLM support.
+Inquiryon Workflows is a **TypeScript + Node.js framework** for building **Human-in-the-Loop (HITL) AI workflows** and **multi-agent orchestration pipelines**.  
+It features **multi-LLM integration** (OpenAI, Anthropic Claude, Google Gemini), **content quality assessment**, and **extensible agent workflows** for **generative AI applications**.
+
+Perfect for:
+- AI agents that require **human oversight**
+- Automated content pipelines with **quality gates**
+- **Multi-LLM orchestration** and fallback handling
+- Domain-specific **AI workflow automation**
 
 ## 🚀 Features
 
-- **🔄 Human-in-the-Loop Workflows**: Seamlessly integrate human decision points into automated processes
-- **🤖 Multi-LLM Support**: Works with OpenAI, Claude (Anthropic), and Google Gemini with automatic fallbacks
-- **📊 Intelligent Quality Assessment**: Built-in content quality analysis with customizable assessors
-- **⚡ Smart Workflow Engine**: Handles complex step dependencies, state management, and error recovery
-- **🔧 Extensible Architecture**: Easy to add custom assessors, workflow steps, and LLM providers
-- **💡 Graceful Degradation**: Works perfectly even without LLM providers installed
+- **🔄 Human-in-the-Loop AI Workflows**: Seamlessly integrate **human oversight** into AI pipelines and automated processes
+- **🤖 Multi-LLM Orchestration**: Works with OpenAI GPT, Claude (Anthropic), and Google Gemini, with built-in fallback logic
+- **📊 AI Content Quality Assessment**: Grammar, readability, engagement, and brand voice checks with custom assessors
+- **⚡ Workflow Automation Engine**: Handles step dependencies, state management, agent coordination, and error recovery
+- **🔧 Extensible Architecture**: Easily add custom assessors, workflow steps, LLM providers, and AI agents
+- **💡 Graceful Degradation**: Runs even without any LLM providers installed — great for hybrid AI/manual workflows
 
 ## 📦 Installation
 
@@ -471,3 +478,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ---
 
 Built with ❤️ by [Inquiryon](https://inquiryon.com)
+
+---
+**Keywords & Tags:**  
+human-in-the-loop, hitl, ai workflows, ai workflow automation, agent orchestration, multi-llm, llm integration, generative ai, prompt engineering, typescript library, nodejs, npm package, openai, anthropic, claude, google gemini, ai content quality, quality assurance, ai evaluation
